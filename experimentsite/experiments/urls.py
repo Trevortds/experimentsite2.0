@@ -18,13 +18,10 @@ from django.contrib import admin
 
 from . import views
 
+app_name = 'experiments'
 urlpatterns = [
-    # ex: /experiments/
     url(r'^$', views.index, name='index'),
-    # ex: /experiments/5/
     url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
-    # ex: /experiments/5/results/
     url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
-    # ex: /experiments/5/vote/
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 ]
