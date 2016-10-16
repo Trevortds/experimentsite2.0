@@ -1,5 +1,5 @@
 """experimentsite URL Configuration
-
+something
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
 Examples:
@@ -13,14 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
-from django.contrib.auth import views
+
+from . import views
 
 urlpatterns = [
-	url(r'^experiments/', include('experiments.urls')),
-
-    url(r'^admin/', admin.site.urls),
-    url(r'', include('log.urls')),
-    url(r'^login/$', views.login, {'template_name': 'login.html'},
+    # ex: /experiments/
+    url(r'^$', views.index, name='index'),
+    # ex: /experiments/5/
+    url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
+    # ex: /experiments/5/results/
+    url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
+    # ex: /experiments/5/vote/
+    url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
 ]
